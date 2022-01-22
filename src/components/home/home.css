@@ -1,0 +1,13 @@
+.header{
+  display: flex;
+  justify-content: space-between;
+
+  align-items: center;
+  margin: 1em;
+}
+
+.articles{
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
