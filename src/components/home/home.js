@@ -3,7 +3,7 @@ import ArticleCard from "../card/card";
 import Pagination from "@mui/material/Pagination";
 import axios from "axios";
 import { MenuItem, Select } from "@mui/material";
-import './home.css'
+import "./home.css";
 
 const Home = () => {
   const [articles, setArticles] = useState([]);
@@ -20,8 +20,8 @@ const Home = () => {
     setLimit(e.target.value);
   };
 
-  const handleChange = (e) => {
-    setPage(e.target.value);
+  const handleChange = (event, value) => {
+    setPage(value);
   };
 
   const getArticles = async (limit, page) => {
@@ -34,36 +34,47 @@ const Home = () => {
       "https://api.spaceflightnewsapi.net/v3/articles/count"
     );
     setCount(count.data);
-    console.log(data);
   };
 
   return (
     <>
-      <div className='header'>
-        <h1>Articles on Space Flight</h1>
-        <h3>No. of articles per page:  
-        <Select value={limit} onChange={handleArticleCount} variant="standard">
-          {articleCount.map((i) => (
-            <MenuItem value={i}>{i}</MenuItem>
-          ))}
-        </Select>
+      <div className="header">
+        <h1>ARTICLES ON SPACE FLIGHT</h1>
+        <h3>
+          Number of articles on each page:{" "}
+          <Select
+            value={limit}
+            onChange={handleArticleCount}
+            variant="standard"
+          >
+            {articleCount.map((i) => (
+              <MenuItem key={i} value={i}>
+                {i}
+              </MenuItem>
+            ))}
+          </Select>
         </h3>
       </div>
-      <div className='articles'>
+      <div className="articles">
         {articles.map((i) => (
           <ArticleCard
+            id={i.id}
             title={i.title}
+            publishedAt={i.publishedAt}
             updatedAt={i.updatedAt}
             image={i.imageUrl}
           />
         ))}
       </div>
-      <Pagination
-        count={Math.ceil(count / limit)}
-        page={page}
-        onChange={handleChange}
-        color="primary"
-      />
+      <div className="footer">
+        <Pagination
+          size="medium"
+          count={Math.ceil(count / limit)}
+          page={page}
+          onChange={handleChange}
+          color="primary"
+        />
+      </div>
     </>
   );
 };

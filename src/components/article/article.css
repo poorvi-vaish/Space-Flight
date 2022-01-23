@@ -1,0 +1,10 @@
+.article {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.linkButtons {
+  display: flex;
+  justify-content: space-around;
+}

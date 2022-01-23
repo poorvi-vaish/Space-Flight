@@ -1,11 +1,17 @@
-import './App.css';
-import ActionAreaCard from './components/card/card';
-import Home from './components/home/home';
+import "./App.css";
+import Home from "./components/home/home";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import Article from "./components/article/article";
 
 function App() {
   return (
     <div className="App">
-      <Home />
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/articles/:id" element={<Article />} />
+        </Routes>
+      </BrowserRouter>
     </div>
   );
 }
